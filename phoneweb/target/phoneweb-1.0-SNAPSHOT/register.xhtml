@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="templates/base.xhtml">
+            <ui:define name="header"></ui:define>
+            <ui:define name="content">
+               
+                <h1 class="text-center">#{pMsg['user.register']}</h1>
+                <h:messages />
+                <h:form>
+                    <div class="container">
+                        <div class="form-group">
+                            <h:outputLabel value="Họ tên" />
+                            <h:inputText id="txtName" 
+                                         value="#{userBean.name}"
+                                         styleClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Email" />
+                            <h:inputText id="txtEmail"
+                                         value="#{userBean.email}"
+                                         styleClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Tên đăng nhập" />
+                            <h:inputText id="txtUserName" 
+                                         value="#{userBean.username}"
+                                         styleClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Mật khẩu" />
+                            <h:inputSecret id="txtPassword" 
+                                           value="#{userBean.password}"
+                                           styleClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Xác nhận mật khẩu" />
+                            <h:inputSecret id="txtConfirmPassword" 
+                                           value="#{userBean.confirmPassword}"
+                                           styleClass="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <h:commandButton value="Đăng ký" 
+                                             action="#{userBean.register()}"
+                                             class="btn btn-warning" />
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+            <ui:define name="contact"></ui:define>
+            <ui:define name="header"></ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

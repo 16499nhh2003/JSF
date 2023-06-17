@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <section class="container" id="section2">
+        <div class="row">
+            <c:forEach var="p" items="#{productBean.products}">
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <h:graphicImage library="images" name="#{p.image}" style="width: 100%"/>
+                        <div class="text-center" style="margin: 20px">
+                            <h5>#{p.name}</h5>
+                            <h5>#{p.price}$</h5>
+                            <h:form>
+                                <h:commandButton value="#{pMsg['products.cart']}" 
+                                                 styleClass="btn btn-warning"
+                                                 >
+                                    <f:ajax listener="#{cartBean.addItemToCart(p.id, p.name, p.price)}"/>
+                                </h:commandButton>
+                                <h:commandButton value="#{pMsg['products.detail']}" 
+                                                 styleClass="btn btn-info " style="margin: 2px" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </section>
+</ui:composition>

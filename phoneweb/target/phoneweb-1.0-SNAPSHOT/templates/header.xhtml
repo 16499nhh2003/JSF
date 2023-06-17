@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <section class="container bg-success" id="section1">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-stacked">
+                    <c:forEach var="manu" items="#{cateBean.manufacturers}">
+                        <li><a href="#"><span class="glyphicon glyphicon-apple">#{manu.name}</span></a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="carousel slide" id="bannerCarouselId" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#bannerCarouselId" data-slide-to="0" class="active"></li>
+                        <li data-target="#bannerCarouselId" data-slide-to="1"></li>
+                        <li data-target="#bannerCarouselId" data-slide-to="2"></li>
+                        <li data-target="#bannerCarouselId" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <h:graphicImage library="images" name="banner/b1.jpg" styleClass="img-responsive" />
+                        </div>
+                        <div class="item">
+                            <h:graphicImage library="images" name="banner/b2.jpg" styleClass="img-responsive" />
+                        </div>
+                        <div class="item">
+                            <h:graphicImage library="images" name="banner/b3.jpg" styleClass="img-responsive" />
+                        </div>
+                        <div class="item">
+                            <h:graphicImage library="images" name="banner/b4.jpg" styleClass="img-responsive" />
+                        </div>
+                    </div>
+                    <a href="#bannerCarouselId" class="left carousel-control" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a href="#bannerCarouselId" class="right carousel-control" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</ui:composition>

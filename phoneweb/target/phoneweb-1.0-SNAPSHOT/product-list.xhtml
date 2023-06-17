@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/base.xhtml">
+            <ui:define name="header"></ui:define>
+            <ui:define name="content">
+                <div class="container">
+                    <h1 class="text-center">#{pMsg['products.admin']}</h1>
+                    <h:link styleClass="btn btn-success" value="#{pMsg['products.add']}" outcome="product?faces-redirect=true">
+                    </h:link>
+                    <h:dataTable var="product" value="#{productBean.products}" styleClass="table">
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.id']}</f:facet>
+                                #{product.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.name']}</f:facet>
+                                #{product.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.description']}</f:facet>
+                                #{product.description}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.price']}</f:facet>
+                                #{product.price}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.cate']}</f:facet>
+                                #{product.category.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{pMsg['products.manufacturer']}</f:facet>
+                            <h:dataTable var="m" value="#{product.manufacturers}">
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
+                                        #{m.name}
+                                </h:column>
+                            </h:dataTable>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:form>
+                                <h:link value="#{pMsg['products.update']}" includeViewParams="true" outcome="product?faces-redirect=true" styleClass="btn btn-info">
+                                    <f:param name="product_id" value="#{product.id}"/>
+                                </h:link>
+                                <h:commandLink value="#{pMsg['products.delete']}" styleClass="btn btn-danger">
+                                    <f:ajax listener="#{productBean.deleteProduct(product)}" onerror="deleteError" onevent="deleteSuccess" />
+                                </h:commandLink>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <script>
+                    function deleteSuccess() {
+                        alert("Xoa thanh cong");
+                    }
+
+                    function deleteError() {
+                        alert("Xoa that bai!!!");
+                    }
+                </script>
+            </ui:define>
+            <ui:define name="contact"></ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
